@@ -21,8 +21,8 @@ services:
     networks:
       - gitea
     ports:
-      - "3001:3000" # Web Server
-      - "221:22" # SSH
+      - "${GITEA_WEB_PORT:-3000}:3000" # Web Server
+      - "${GITEA_SSH_PORT:-222}:22" # SSH
     secrets:
       - postgres_passwd
     env_file:
