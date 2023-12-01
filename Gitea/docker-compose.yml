@@ -1,14 +1,5 @@
 version: "3"
-
 name: gitea
-
-networks:
-  gitea:
-    external: false
-
-secrets:
-  postgres_passwd:
-    file: ./postgres_password.passwd
 
 services:
   # ----- Gitea Server
@@ -25,11 +16,15 @@ services:
       - "${GITEA_SSH_PORT:-222}:22" # SSH
     secrets:
       - postgres_passwd
+      - gitea_web_cert
+      - gitea_web_key
     env_file:
       - ./server.env
       - ./db.env
     environment:
       GITEA__database__PASSWD: postgres_passwd
+      GITEA__server__CERT_FILE: /run/certificates/gitea_web_cert
+      GITEA__server__KEY_FILE: /run/certificates/gitea_web_key
     volumes:
       - ./server_data:/data
       - /etc/timezone:/etc/timezone:ro
@@ -50,3 +45,15 @@ services:
       POSTGRES_PASSWORD: postgres_passwd
     volumes:
       - ./db_data:/var/lib/postgresql/data
+
+networks:
+  gitea:
+    external: false
+
+secrets:
+  postgres_passwd:
+    file: ./postgres_password.passwd
+  gitea_web_cert:
+    file: ./certificates/gitea_web_cert.pem
+  gitea_web_key:
+    file: ./certificates/gitea_web_key.pem

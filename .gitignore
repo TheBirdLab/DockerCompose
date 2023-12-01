@@ -1,6 +1,7 @@
 # Secrets Files
 *.passwd
 *.password
+*/certificates/*
 
 # Docker Bind Mounted Volumns
 Gitea/server_data/
