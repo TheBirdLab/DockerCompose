@@ -29,12 +29,6 @@ services:
       - ./server.env
       - ./db.env
     environment:
-      USER_UID: ${USER_UID:-1000}
-      USER_GID: ${USER_GID:-1000}
-      GITEA__database__DB_TYPE: postgres
-      GITEA__database__HOST: db:5432
-      GITEA__database__NAME: ${POSTGRES_DB:-gitea}
-      GITEA__database__USER: ${POSTGRES_USER:-gitea}
       GITEA__database__PASSWD: postgres_passwd
     volumes:
       - ./server_data:/data
@@ -53,8 +47,6 @@ services:
     env_file:
       - ./db.env
     environment:
-      POSTGRES_DB: ${POSTGRES_DB:-gitea}
-      POSTGRES_USER: ${POSTGRES_USER:-gitea}
       POSTGRES_PASSWORD: postgres_passwd
     volumes:
       - ./db_data:/var/lib/postgresql/data
