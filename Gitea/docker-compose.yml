@@ -25,6 +25,9 @@ services:
       - "${GITEA_SSH_PORT:-222}:22" # SSH
     secrets:
       - postgres_passwd
+    env_file:
+      - ./server.env
+      - ./db.env
     environment:
       USER_UID: ${USER_UID:-1000}
       USER_GID: ${USER_GID:-1000}
@@ -47,6 +50,8 @@ services:
       - gitea
     secrets:
       - postgres_passwd
+    env_file:
+      - ./db.env
     environment:
       POSTGRES_DB: ${POSTGRES_DB:-gitea}
       POSTGRES_USER: ${POSTGRES_USER:-gitea}
