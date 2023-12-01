@@ -24,9 +24,9 @@ services:
     networks:
       - gitea
     ports:
-      - "80:3000" # HTTP Server
-      - "443:443" # HTTPS Server
-      - "22:22" # SSH
+      - "6170:3000" # HTTP Server
+      - "6443:443" # HTTPS Server
+      - "221:22" # SSH
     secrets:
       - postgres_passwd
       - gitea_web_cert
