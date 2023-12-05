@@ -50,7 +50,6 @@ services:
     networks:
       - arr
     ports:
-    ports:
       - 8686:8686
     environment:
       PUID: 1000
