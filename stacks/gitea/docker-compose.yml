@@ -40,7 +40,7 @@ services:
       GITEA__server__CERT_FILE: /run/secrets/gitea_web_cert
       GITEA__server__KEY_FILE: /run/secrets/gitea_web_key
     volumes:
-      - ./server_data:/data
+      - ./data/server_data:/data
       - /etc/timezone:/etc/timezone:ro
       - /etc/localtime:/etc/localtime:ro
 
@@ -57,7 +57,7 @@ services:
     environment:
       POSTGRES_PASSWORD: postgres_passwd
     volumes:
-      - ./db_data:/var/lib/postgresql
+      - ./data/db_data:/var/lib/postgresql
 
   # ----- Gitea Runner
   runner:
@@ -73,7 +73,7 @@ services:
       - ./env/runner.env
       - ./env/server.env
     volumes:
-      - ./runner_data:/data
+      - ./data/runner_data:/data
       - /var/run/docker.sock:/var/run/docker.sock
     environment:
       GITEA_RUNNER_REGISTRATION_TOKEN: gitea_runner_token

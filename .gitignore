@@ -4,5 +4,5 @@
 **/certificates/
 
 # Docker Bind Mounted Volumns
-*/gitea/server_data/
-*/gitea/db_data/
+*/stacks/*/configs
+*/stacks/*/data
